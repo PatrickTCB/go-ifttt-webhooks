@@ -57,14 +57,21 @@ func main() {
 	} else {
 		ifttt_url := fmt.Sprintf("https://maker.ifttt.com/trigger/%s/with/key/%s", a.event, a.key)
 		ifttt_params := url.Values{}
+		valadded := false
 		if a.val1 != "" {
 			ifttt_params.Add("value1", a.val1)
+			valadded = true
 		}
 		if a.val2 != "" {
 			ifttt_params.Add("value2", a.val2)
+			valadded = true
 		}
 		if a.val3 != "" {
 			ifttt_params.Add("value3", a.val3)
+			valadded = true
+		}
+		if !valadded {
+			fmt.Sprintf("You're calling %s without any values", a.event)
 		}
 		response, rerr := http.PostForm(ifttt_url, ifttt_params)
 		if rerr != nil {
