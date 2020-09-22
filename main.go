@@ -71,7 +71,7 @@ func main() {
 			valadded = true
 		}
 		if !valadded {
-			fmt.Sprintf("You're calling %s without any values", a.event)
+			fmt.Printf("You're calling %s without any values", a.event)
 		}
 		response, rerr := http.PostForm(ifttt_url, ifttt_params)
 		if rerr != nil {
